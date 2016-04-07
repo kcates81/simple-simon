@@ -6,9 +6,6 @@
     padding: 1em;
     margin: 1em;
 }
-#blue:hover{
-    background-color: #000533;
-}
 #game{
     width: 500px;
     height: 450px;
@@ -22,9 +19,6 @@
     padding: 1em;
     margin: 1em;
 }
-#green:hover{
-    background-color: #093300;
-}
 h1 {
     text-align: center;
 }
@@ -35,9 +29,6 @@ h1 {
     border: solid 5px black;
     padding: 1em;
     margin: 1em;
-}
-#red:hover{
-    background-color: #330100;
 }
 #row-1 {
     display: inline-block;
@@ -52,9 +43,6 @@ h1 {
     border: solid 5px black;
     padding: 1em;
     margin: 1em;
-}
-#yellow:hover{
-    background-color: #333002;
 }
 
 
