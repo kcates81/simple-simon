@@ -42,49 +42,22 @@
         <script>
             (function(){
             "use strict";
-                // click even for red button
-                $(document).on('click', '#red',function(clickRed){
-                    console.log('Red Square clicked');
-                    $('#red').animate({
-                        opacity: 0
-                    },100);
-                    $('#red').animate({
-                        opacity: 1
-                    });
-                });
 
-                // click event for yellow button
-                $(document).on('click', '#yellow',function(clickRed){
-                    console.log('Yellow Square clicked');
-                    $('#yellow').animate({
-                        opacity: 0
-                    },100);
-                    $('#yellow').animate({
-                        opacity: 1
-                    });
-                });
+                // this is the click event that changes the opacity of any square that is clicked 
+                var colors = ['#red', '#yellow', '#blue', '#green'];
 
-                // click event for green button
-                $(document).on('click', '#green',function(clickRed){
-                    console.log('Green Square clicked');
-                    $('#green').animate({
-                        opacity: 0
-                    },100);
-                    $('#green').animate({
-                        opacity: 1
+                colors.forEach(function(color){
+                    $(document).on('click', color, function(clickSquare){
+                        console.log(color + ' Square clicked');
+                        $(color).animate({
+                            opacity: 0
+                        },100);
+                        $(color).animate({
+                            opacity: 1
+                        });
                     });
-                });
-
-                // click event for blue button
-                $(document).on('click', '#blue',function(clickRed){
-                    console.log('Blue Square clicked');
-                    $('#blue').animate({
-                        opacity: 0
-                    }, 100);
-                    $('#blue').animate({
-                        opacity: 1
-                    });
-                });
+                 });
+                
             })();
         </script>
     </body>
