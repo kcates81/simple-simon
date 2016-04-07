@@ -52,12 +52,14 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script>
-            (function(){
+            // (function(){
             "use strict";
+                // the variable 'colors' is global
+                var colors = ['#red', '#yellow', '#blue', '#green']; 
+                // the variable 'sequence' is global and is also an empty array
+                var sequence = [];
 
                 // this is the click event that changes the opacity of any square that is clicked 
-                var colors = ['#red', '#yellow', '#blue', '#green'];
-
                 colors.forEach(function(color){
                     $(document).on('click', color, function(clickSquare){
                         console.log(color + ' Square clicked');
@@ -69,6 +71,11 @@
                         });
                     });
                  });
+
+                
+                
+
+                
                 
                 // this click event generates a random number (that's associated with one of the squares) when clicking start
                 $(document).on('click', '#start', function(clickStart){
@@ -78,19 +85,35 @@
                     var randomNum = Math.floor((Math.random() * 4));
                     console.log(randomNum);
 
-                    // this assigns a colored square to the index of the random number generated
-                    var color = colors[randomNum];
-                    console.log(color);
+                    // this pushes my random number into an array
+                    sequence.push(randomNum);
 
-                    //this changes the opacity for the square that the randomizer chose
-                    $(color).animate({
+                    // this loops through my 'sequence' array
+                    var count = 0;
+                    var interval = 1000; // interval time in milliseconds
+                    
+                    var simonsTurn = setInterval(function () {
+                    if (count == sequence.length) {
+                        count=0;
+                        clearInterval(simonsTurn);
+                        console.log('All done')
+                    } else {
+                        var something = sequence[count];
+                        var color = colors[something];
+
+                        $(color).animate({
                             opacity: 0
                         },100);
                         $(color).animate({
                             opacity: 1
                         });
+                        count++;
+                        console.log('Repeating this line ' + color);
+                    }
+                }, interval);
+
                 });
-            })();
+            // })();
         </script>
     </body>
 </html>
