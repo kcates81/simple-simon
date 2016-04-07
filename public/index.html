@@ -73,11 +73,22 @@
                 // this click event generates a random number (that's associated with one of the squares) when clicking start
                 $(document).on('click', '#start', function(clickStart){
                     console.log('You clicked start');
+
+                    // this is the randomizer
                     var randomNum = Math.floor((Math.random() * 4));
                     console.log(randomNum);
 
+                    // this assigns a colored square to the index of the random number generated
                     var color = colors[randomNum];
                     console.log(color);
+
+                    //this changes the opacity for the square that the randomizer chose
+                    $(color).animate({
+                            opacity: 0
+                        },100);
+                        $(color).animate({
+                            opacity: 1
+                        });
                 });
             })();
         </script>
