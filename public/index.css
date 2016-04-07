@@ -1,26 +1,18 @@
-#row-1 {
-    display: inline-block;
-    position: center;
-}
-#row-2 {
-    display: inline-block;
-    position: center; 
-}
-#red {
-    background-color: red;
+#blue {
+    background-color: blue;
     width: 200px;
     height: 200px;
     border: solid 5px black;
     padding: 1em;
     margin: 1em;
 }
-#yellow {
-    background-color: yellow;
-    width: 200px;
-    height: 200px;
-    border: solid 5px black;
-    padding: 1em;
-    margin: 1em;
+#blue:hover{
+    background-color: #000533;
+}
+#game{
+    width: 500px;
+    height: 450px;
+    background-color: black;
 }
 #green {
     background-color: green;
@@ -30,14 +22,40 @@
     padding: 1em;
     margin: 1em;
 }
-#blue {
-    background-color: blue;
+#green:hover{
+    background-color: #093300;
+}
+h1 {
+    text-align: center;
+}
+#red {
+    background-color: red;
     width: 200px;
     height: 200px;
     border: solid 5px black;
     padding: 1em;
     margin: 1em;
 }
-h1 {
-    text-align: center;
+#red:hover{
+    background-color: #330100;
 }
+#row-1 {
+    display: inline-block;
+}
+#row-2 {
+    display: inline-block;
+}
+#yellow {
+    background-color: yellow;
+    width: 200px;
+    height: 200px;
+    border: solid 5px black;
+    padding: 1em;
+    margin: 1em;
+}
+#yellow:hover{
+    background-color: #333002;
+}
+
+
+
