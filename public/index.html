@@ -18,11 +18,16 @@
         <div class="col-md-3">
         </div>
 
-         <!-- Start Button -->
+         <!-- Start and Submit Buttons -->
          <div class="col-md-6-offset-4">
              <button type="submit" id="start">GO!</button>
          </div>
         
+        <!-- Motivation -->
+        <div id = "motivation">
+            
+        </div>
+
         <!-- Game -->
         <div id="game" class=" container col-md-6-offset-4">
             <div id="row-1">
@@ -62,7 +67,6 @@
                 // this is the click event that changes the opacity of any square that is clicked 
                 colors.forEach(function(color){
                     $(document).on('click', color, function(clickSquare){
-                        console.log(color + ' Square clicked');
                         $(color).animate({
                             opacity: 0
                         },100);
@@ -72,13 +76,11 @@
                     });
                  });
 
-                // this click event generates a random number (that's associated with one of the squares) when clicking start
-                $(document).on('click', '#start', function(clickStart){
-                    console.log('You clicked start');
+                // this function generates a random number (that's associated with one of the squares) 
+                function clickStart(){
 
                     // this is the randomizer
                     var randomNum = Math.floor((Math.random() * 4));
-                    console.log(randomNum);
 
                     // this pushes my random number into an array
                     sequence.push(randomNum);
@@ -88,28 +90,28 @@
                     var interval = 1000; // interval time in milliseconds
 
                     var simonsTurn = setInterval(function () {
-                    if (count == sequence.length) {
-                        count=0;
-                        clearInterval(simonsTurn);
-                        console.log('All done')
-                    } else {
-                        var something = sequence[count];
-                        var color = colors[something];
+                        if (count == sequence.length) {
+                            count = 0;
+                            clearInterval(simonsTurn);
+                        } else {
+                            var something = sequence[count];
+                            var color = colors[something];
 
-                        $(color).animate({
-                            opacity: 0
-                        },100);
-                        $(color).animate({
-                            opacity: 1
-                        });
-                        count++;
-                        console.log('Repeating this line ' + color);
-                    }
-                }, interval);
-                });
+                            $(color).animate({
+                                opacity: 0
+                            },100);
+                            $(color).animate({
+                                opacity: 1
+                            });
+                            count++;
+                        }
+                    }, interval);
+                }
 
-                // this should check if the user clicked the correct sequence
-                var squaresClicked = sequence;
+                // this runs the function clickStart when the 'Go' button is clicked 
+                $(document).on('click', '#start', clickStart);
+
+                // this checks if the user clicked the correct sequence and runs clickStart again if they are correct
                 var currentClick = 0;
 
                 
@@ -117,17 +119,29 @@
                     return clicks == squaresClicked;
                    }
 
-                $(document).click(function(event){
-                    if (this.id == squaresClicked[currentClick]) {
+                $('#game').click(function(event){
+                    var id = event.target.id;
+                    var colorsIndex = sequence[currentClick];
+                    var color = colors[colorsIndex];
+
+                    var winner = ['You is smart!', 'You is kind!', 'You is important!'];
+
+                    if ('#' + id == color) {
                         currentClick++;
+                        for (var i = 0; i < winner.length; i++) {
+                            $('#motivation').html('<h2>' + winner[i] + '</h2>');
+                        }
+                        
                     } else {
                         currentClick = 0;
                         console.log('You lose!');
+                        $('#game').html('<img src="/img/you-lose.jpg">');
                     }
-                    if (currentClick == squaresClicked.length) {
+                    if (currentClick == sequence.length) {
                         currentClick = 0;
+                        clickStart();
                     }  
-            });
+                });
             // })();
         </script>
     </body>
