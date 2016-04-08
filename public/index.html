@@ -18,7 +18,7 @@
         <div class="col-md-3">
         </div>
 
-         <!-- Start and Submit Buttons -->
+         <!-- Start Button -->
          <div class="col-md-6-offset-4">
              <button type="submit" id="start">GO!</button>
          </div>
@@ -94,8 +94,8 @@
                             count = 0;
                             clearInterval(simonsTurn);
                         } else {
-                            var something = sequence[count];
-                            var color = colors[something];
+                            var colorsIndex = sequence[count];
+                            var color = colors[colorsIndex];
 
                             $(color).animate({
                                 opacity: 0
@@ -114,7 +114,6 @@
                 // this checks if the user clicked the correct sequence and runs clickStart again if they are correct
                 var currentClick = 0;
 
-                
                 function checkClicks(clicks) {
                     return clicks == squaresClicked;
                    }
@@ -124,21 +123,45 @@
                     var colorsIndex = sequence[currentClick];
                     var color = colors[colorsIndex];
 
-                    var winner = ['You is smart!', 'You is kind!', 'You is important!'];
-
                     if ('#' + id == color) {
                         currentClick++;
-                        for (var i = 0; i < winner.length; i++) {
-                            $('#motivation').html('<h2>' + winner[i] + '</h2>');
-                        }
-                        
                     } else {
                         currentClick = 0;
-                        console.log('You lose!');
+                        // this shows a meme when you get the sequence wrong 
                         $('#game').html('<img src="/img/you-lose.jpg">');
+                        $('#game').css('background-color', '#fff');
                     }
+
                     if (currentClick == sequence.length) {
                         currentClick = 0;
+
+                        // this spits out a random message when you get the sequence correct 
+                        var winner = [
+                            "You is smart! You is kind! You is important!",
+                            "Shake and Bake!",
+                            "You wake up in the morning and piss excellence!",
+                            "You can do it! All night long!",
+                            "You're good enough! You're smart enough! And, dog on it, people like you!",
+                            "Superstar!",
+                            "Stratgery!",
+                            "You're my boy, Blue!",
+                            "That escalated quickly!",
+                            "Yeah, that's the ticket!",
+                            "Well, isn't THAT special?"
+                            ];
+                        var winnerCount = 0;
+                        var winnerSequence = [];
+                        var randomWinner = Math.floor((Math.random() * 11));
+
+                        winnerSequence.push(randomWinner);
+                        var winnerIndex = winnerSequence[winnerCount];
+
+                        var msg = winner[winnerIndex];
+
+                        $('#motivation').html('<h2>' + msg + '</h2>');
+                        winnerCount++;
+
+                        // this runs the clickStart function again with one more square added to the sequence if you get the sequence right
                         clickStart();
                     }  
                 });
