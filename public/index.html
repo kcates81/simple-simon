@@ -28,22 +28,35 @@
             
         </div>
 
+        <!-- Fail Sound -->
+        <audio id="fail">
+            <source src="/audio/price-is-right-losing-horn.mp3">
+        </audio>
+
         <!-- Game -->
         <div id="game" class=" container col-md-6-offset-4">
             <div id="row-1">
                 <div id="red">
-                
+                    <audio id="beep">
+                        <source src="/audio/red-sound.m4a">
+                    </audio>
                 </div>
                 <div id="yellow">
-                    
+                    <audio id="beep">
+                        <source src="/audio/yellow-sound.m4a">
+                    </audio>
                 </div> 
             </div>
             <div id="row-2">
                 <div id="green">
-                
+                    <audio id="beep">
+                        <source src="/audio/green-sound.m4a">
+                    </audio>
                 </div>
                 <div id="blue">
-                    
+                    <audio id="beep">
+                        <source src="/audio/bue-sound.m4a">
+                    </audio>
                 </div>
             </div>
         </div>
@@ -73,6 +86,9 @@
                         $(color).animate({
                             opacity: 1
                         });
+
+                        // this plays a beep when the square is clicked
+                        $('#beep').get(0).play();
                     });
                  });
 
@@ -104,6 +120,7 @@
                                 opacity: 1
                             });
                             count++;
+                            $('#beep').get(0).play(500);
                         }
                     }, interval);
                 }
@@ -130,6 +147,8 @@
                         // this shows a meme when you get the sequence wrong 
                         $('#game').html('<img src="/img/you-lose.jpg">');
                         $('#game').css('background-color', '#fff');
+                        $('#motivation').html('<h2>' + ' ' + '</h2>');
+                        $('#fail').get(0).play();
                     }
 
                     if (currentClick == sequence.length) {
@@ -147,11 +166,20 @@
                             "You're my boy, Blue!",
                             "That escalated quickly!",
                             "Yeah, that's the ticket!",
-                            "Well, isn't THAT special?"
+                            "Well, isn't THAT special?",
+                            "Thank you, Chuck Norris!",
+                            "Nobody makes you bleed your own blood. Nobody!",
+                            "Moisture is the essence of wetness, and wetness is the essence of beauty.",
+                            "Orange mocha frappuccino!",
+                            "You is talking loco and I like it!",
+                            "Oh, snap!",
+                            "You smart! You loyal! You're a genius!",
+                            "Another one",
+                            "The key to more success is winning at Simple Simon"
                             ];
                         var winnerCount = 0;
                         var winnerSequence = [];
-                        var randomWinner = Math.floor((Math.random() * 11));
+                        var randomWinner = Math.floor((Math.random() * 20));
 
                         winnerSequence.push(randomWinner);
                         var winnerIndex = winnerSequence[winnerCount];
